@@ -8,9 +8,11 @@ real_dir() {
 d=$(real_dir $BASH_SOURCE)
 code="var dir = '$d/node_modules';
       var Rx = require(dir + '/rx'),
-      RxNode = require(dir + '/rx-node'),
-      R = require(dir + '/ramda');
-      with (R) {
+          RxNode = require(dir + '/rx-node'),
+          R = require(dir + '/ramda'),
+          prelude = require(dir + '/../prelude');
+      with (R.merge(R, prelude)) {
+        // TODO: chunking makes artificial line-breaks.
         var stdin = RxNode.fromStream(process.stdin)
                           .map(String)
                           .flatMap(split('\n'))
