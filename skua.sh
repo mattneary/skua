@@ -11,7 +11,10 @@ code="var dir = '$d/node_modules';
           RxNode = require(dir + '/rx-node'),
           R = require(dir + '/ramda'),
           prelude = require(dir + '/../prelude');
-      with (R.merge(R, prelude)) {
+      R.keys(prelude.transforms).forEach(function (k) {
+        Rx.Observable.prototype[k] = prelude.transforms[k];
+      });
+      with (R.merge(R, prelude.operators)) {
         // TODO: chunking makes artificial line-breaks.
         var stdin = RxNode.fromStream(process.stdin)
                           .map(String)

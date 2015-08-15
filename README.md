@@ -11,18 +11,33 @@ $ npm install -g
 
 The following is an implementation of McIlroy's [famed
 one-liner](http://www.leancrew.com/all-this/2011/12/more-shell-less-egg/) in
-skua (truncated to two lines).
+skua.
 
 ```sh
-$ cat README.md | skua "flatMap(split(/[^A-Za-z]+/)) .
-                        filter(test(/[A-Za-z]/)) .
+$ cat README.md | skua "flatMap(split(/[^A-Za-z]/)) .
+                        filter(compose(not, test(/^$/))) .
                         map(toLower) .
-                        bufferWithCount(ALL) .
+                        toArray() .
                         map(countBy(identity)) .
-                        map(fanout(zipWith(sandwich(' ')), keys, values)) .
+                        map(fanout(zipWith(sandwich(' ')), values, keys)) .
                         flatMap(sort(naturalSort)) .
-                        take(2)"
-a 2
-all 2
+                        take(4)"
+6 skua
+4 sh
+3 cat
+3 flatmap
+```
+
+```sh
+$ cat README.md | skua "filter(test(/usage/))"
+# usage
+```
+
+```sh
+$ cat package.json | skua "squash() .
+                           flatMap(pipe(JSON.parse, prop('dependencies'), keys))"
+ramda
+rx
+rx-node
 ```
 
