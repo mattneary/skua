@@ -4,7 +4,7 @@
 > Text processing in the order of awk
 
 ```sh
-$ npm install -g
+$ npm install -g skua-cli
 ```
 
 # usage

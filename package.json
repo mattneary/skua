@@ -1,6 +1,6 @@
 {
-  "name": "skua",
-  "version": "0.1.0",
+  "name": "skua-cli",
+  "version": "0.1.1",
   "description": "Text processing in the order of awk",
   "main": "skua.sh",
   "scripts": {
