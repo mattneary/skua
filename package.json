@@ -1,0 +1,15 @@
+{
+  "name": "skua",
+  "version": "0.1.0",
+  "description": "Text processing in the order of awk",
+  "main": "skua.sh",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matt Neary",
+  "dependencies": {
+    "ramda": "0.17.1",
+    "rx": "2.5.3",
+    "rx-node": "1.0.1"
+  }
+}
