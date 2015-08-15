@@ -4,6 +4,9 @@ module.exports = {
     return j(f(x), g(x));
   }),
   naturalSort: R.comparator(R.lt),
+  sandwich: R.curry(function (x, a, b) {
+    return R.join(x, [a, b]);
+  }),
   ALL: 1e6
 };
 
