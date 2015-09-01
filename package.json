@@ -1,8 +1,8 @@
 {
   "name": "skua-cli",
   "version": "0.1.1",
-  "description": "Text processing in the order of awk",
-  "main": "skua.sh",
+  "description": "A text processing language in the order of awk",
+  "main": "./bin/skua.sh",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,7 +12,10 @@
     "rx": "2.5.3",
     "rx-node": "1.0.1"
   },
+  "scripts": {
+    "prepublish": "make"
+  },
   "bin": {
-    "skua": "skua.sh"
+    "skua": "./bin/skua.sh"
   }
 }

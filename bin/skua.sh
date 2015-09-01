@@ -2,15 +2,16 @@
 real_dir() {
   # get the real dir of the symlinked node binary
   local path="$1"
-  (cd "$(dirname $0)/$(dirname $(readlink $path))";
+  (cd "$(dirname $0)/$(dirname $(readlink $path))/..";
    echo "`pwd -P`") 2> /dev/null
 }
 d=$(real_dir $BASH_SOURCE)
+src=`echo "$1" | $d/bin/skua-lisp`
 code="var dir = '$d/node_modules';
       var Rx = require(dir + '/rx'),
           RxNode = require(dir + '/rx-node'),
           R = require(dir + '/ramda'),
-          prelude = require(dir + '/../prelude');
+          prelude = require(dir + '/../lib/prelude');
       R.keys(prelude.transforms).forEach(function (k) {
         Rx.Observable.prototype[k] = prelude.transforms[k];
       });
@@ -20,7 +21,7 @@ code="var dir = '$d/node_modules';
                           .map(String)
                           .flatMap(split('\n'))
                           .filter(length);
-        stdin.$1 // Inline the provided transforms
+        stdin.$src // Inline the provided transforms
              .map(String)
              .subscribe(console.log.bind(console));
       }"
