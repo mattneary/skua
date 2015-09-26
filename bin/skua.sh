@@ -1,6 +1,5 @@
 #!/usr/bin/env cdrepo
-d=$(dirname $1)
-shift
+d=$(dirname $0)
 
 src=`echo "$1" | $d/bin/skua-lisp`
 code="var dir = '$d/node_modules';

@@ -4,8 +4,7 @@
 > A text processing language in the order of awk
 
 ```sh
-$ npm install -g cdrepo
-$ npm install -g skua-cli
+$ npm install -g cdrepo skua-cli
 ```
 
 # usage
